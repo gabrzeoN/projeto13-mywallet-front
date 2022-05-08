@@ -4,6 +4,6 @@ export default function NewTransactionPage(){
     const {transactionType} = useParams();
 
     return(
-        <></>
+        <>Oi</>
     );
 }

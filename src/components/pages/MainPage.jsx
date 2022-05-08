@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
@@ -7,21 +7,33 @@ import UserContext from "../../contexts/UserContext.jsx";
 import Transaction from "../Transaction.jsx";
 
 export default function MainPage(){
-    const getTransactionsURL = "http://localhost:5000/transaction"; 
+    const getTransactionsURL = "http://localhost:5000/transaction";
+    const putLogoutURL = "http://localhost:5000/sign-out";
     const {userData} = useContext(UserContext);
     const {name, token} = userData
     const [userTransactions, setUserTransactions] = useState(null);
+    const navigate = useNavigate();
 
-    async function loadTransactions(){
-        const config = {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }    
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }  
+
+    async function loadTransactions(){   
         try{
             const {data: transactions} = await axios.get(getTransactionsURL, config);
             setUserTransactions([...transactions])
             console.log(transactions); // TODO: erase me
+        }catch(error){
+            alert(error.response.data);
+        }
+    }
+
+    async function logout(){
+        try{
+            await axios.put(putLogoutURL, {}, config);
+            navigate("/");
         }catch(error){
             alert(error.response.data);
         }
@@ -34,7 +46,7 @@ export default function MainPage(){
         <Main>
             <Top>
                     <h1>Olá, {name}</h1>
-                    <ion-icon name="exit-outline"></ion-icon>
+                    <ion-icon name="exit-outline" onClick={logout} ></ion-icon>
             </Top>
                 {                    
                     userTransactions?.map(({date, value, description, type, _id}) => {
