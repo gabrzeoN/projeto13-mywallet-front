@@ -19,7 +19,7 @@ export default function App(){
         <UserContext.Provider value={ {userData, setUserData} } >
             <BrowserRouter>
                 <Routes>
-                        <Route path="/sign-in" element={<SignInPage />} />
+                        <Route path="/" element={<SignInPage />} />
                         <Route path="/sign-up" element={<SignUpPage />} />
                         <Route path="/main" element={<MainPage />} />
                         <Route path="/newtransaction/:transactionType" element={<NewTransactionPage />} />
