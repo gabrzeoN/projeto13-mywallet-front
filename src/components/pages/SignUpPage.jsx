@@ -4,7 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 
 export default function SignUpPage(){
-    const postRegisterURL = "http://localhost:5000/sign-up"; 
+    const postRegisterURL = "https://mywallet-gabrielcari.herokuapp.com/sign-up"; 
     const [registerData, setRegisterData] = useState({name: "", email: "", password: "", repeatPassword: ""});
     const [disabled, setDisabled] = useState(false);
     const navigate = useNavigate();
@@ -67,9 +67,58 @@ export default function SignUpPage(){
 }
 
 const Main = styled.main`
-    background-color: purple;
+    background-color: var(--main-background);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    *{
+        color: var(--main-font);
+    }
+
+    h1{
+        font-family: 'Saira Stencil One', cursive;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 50px;
+        margin-bottom: 24px;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+    }
+    input{
+        width: 326px;
+        height: 58px;
+        border: 0px;
+        border-radius: 5px;
+        margin-bottom: 13px;
+        font-size: 20px;
+        line-height: 23px;
+        padding-left: 15px;
+        color: #000000;
+        &::placeholder{
+            color: #000000;
+        }
+    }
+
+    button{
+        background-color: var(--main-button);
+        width: 326px;
+        height: 58px;
+        border: 0px;
+        border-radius: 5px;
+        margin-bottom: 36px;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 23px;
+    }
 
     p{
-        color: yellow;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 18px;
     }
 `;

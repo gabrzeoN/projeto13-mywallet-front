@@ -6,7 +6,7 @@ import axios from "axios";
 
 export default function NewTransactionPage(){
     const {transactionType} = useParams();
-    const postNewTransactionURL = `http://localhost:5000/transaction/${transactionType}`;
+    const postNewTransactionURL = `https://mywallet-gabrielcari.herokuapp.com/transaction/${transactionType}`;
     const {userData} = useContext(UserContext);
     const [disabled, setDisabled] = useState(false);
     const [newTransactionData, setNewTransactionData] = useState({value: "", description: ""});
@@ -69,14 +69,54 @@ export default function NewTransactionPage(){
 }
 
 const Main = styled.main`
-    background-color: #979700;
-
+    *{
+        color: var(--main-font);
+    }
+    padding: 25px;
 `;
 
 const Top = styled.section`
     display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 31px;
+    margin-bottom: 22px;
+    ion-icon{
+        font-size:35px;
+    }
 `;
 
 const NewTransaction = styled.section`
+    
+    form{
+        display: flex;
+        flex-direction: column;
+    }
+    input{
+        width: 100%;
+        height: 58px;
+        border: 0px;
+        border-radius: 5px;
+        margin-bottom: 13px;
+        font-size: 20px;
+        line-height: 23px;
+        padding-left: 15px;
+        color: #000000;
+        &::placeholder{
+            color: #000000;
+        }
+    }
 
+    button{
+        background-color: var(--main-button);
+        width: 100%;
+        height: 58px;
+        border: 0px;
+        border-radius: 5px;
+        margin-bottom: 36px;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 23px;
+    }
 `;

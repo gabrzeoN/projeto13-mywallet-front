@@ -6,7 +6,7 @@ import axios from "axios";
 import UserContext from "../../contexts/UserContext";
 
 export default function SignInPage(){
-    const postLoginURL = "http://localhost:5000/sign-in"; 
+    const postLoginURL = "https://mywallet-gabrielcari.herokuapp.com/sign-in"; 
     const {setUserData} = useContext(UserContext);
     const [loginData, setLoginData] = useState({email: "", password: ""});
     const [disabled, setDisabled] = useState(false);
@@ -57,6 +57,11 @@ export default function SignInPage(){
 
 const Main = styled.main`
     background-color: var(--main-background);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     *{
         color: var(--main-font);
     }
@@ -66,22 +71,43 @@ const Main = styled.main`
         font-weight: 400;
         font-size: 32px;
         line-height: 50px;
+        margin-bottom: 24px;
     }
 
+    form{
+        display: flex;
+        flex-direction: column;
+    }
     input{
         width: 326px;
         height: 58px;
         border: 0px;
         border-radius: 5px;
+        margin-bottom: 13px;
+        font-size: 20px;
+        line-height: 23px;
+        padding-left: 15px;
+        color: #000000;
+        &::placeholder{
+            color: #000000;
+        }
     }
 
     button{
+        background-color: var(--main-button);
         width: 326px;
         height: 58px;
         border: 0px;
         border-radius: 5px;
+        margin-bottom: 36px;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 23px;
     }
 
     p{
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 18px;
     }
 `;
