@@ -12,6 +12,7 @@ export default function MainPage(){
     const {userData} = useContext(UserContext);
     const {name, token} = userData
     const [userTransactions, setUserTransactions] = useState(null);
+    const [userBalance, setUserBalance] = useState(0);
     const navigate = useNavigate();
 
     const config = {
@@ -42,26 +43,42 @@ export default function MainPage(){
     useEffect(() => loadTransactions(), []);
 
     return(
-
         <Main>
             <Top>
-                    <h1>Olá, {name}</h1>
-                    <ion-icon name="exit-outline" onClick={logout} ></ion-icon>
+                <h1>Olá, {name}</h1>
+                <ion-icon name="exit-outline" onClick={logout} ></ion-icon>
             </Top>
-                {                    
-                    userTransactions?.map(({date, value, description, type, _id}) => {
-                        return (
-                            <Transaction
-                                key={_id}
-                                date={date}
-                                value={value}
-                                description={description}
-                                type={type}
-                                id={_id}
-                            />
-                        )
-                    })
+            <Transactions userBalance>
+                {userTransactions === null
+                    ?
+                        <p>Carregando</p>
+                    :    
+                        userTransactions.length < 1
+                            ?     
+                                <p>Não há registros</p>       
+                            :      
+                                userTransactions?.map(({date, value, description, type, _id}) => {
+                                    // setUserBalance(userBalance + value)
+                                    return (
+                                        <Transaction
+                                            key={_id}
+                                            date={date}
+                                            value={value}
+                                            description={description}
+                                            type={type}
+                                            id={_id}
+                                            setUserBalance={setUserBalance}
+                                            userBalance={userBalance}
+                                        />
+                                        )
+                                })
+                            
                 }
+                <div className="balance">
+                    <p>SALDO</p>
+                    <p>{userBalance}</p>
+                </div>
+            </Transactions>
             <NewTransaction>
                 <Link to="/newtransaction/inflow">
                     <button>Nova entrada</button>
@@ -75,12 +92,19 @@ export default function MainPage(){
 }
 
 const Main = styled.main`
-    background-color: purple;
+    background-color: #979700;
 
 `;
 
 const Top = styled.section`
     display: flex;
+`;
+
+const Transactions = styled.section`
+
+    div{
+        display: flex;
+    }
 `;
 
 const NewTransaction = styled.section`

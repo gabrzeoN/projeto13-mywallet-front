@@ -56,9 +56,32 @@ export default function SignInPage(){
 }
 
 const Main = styled.main`
-    background-color: purple;
+    background-color: var(--main-background);
+    *{
+        color: var(--main-font);
+    }
+
+    h1{
+        font-family: 'Saira Stencil One', cursive;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 50px;
+    }
+
+    input{
+        width: 326px;
+        height: 58px;
+        border: 0px;
+        border-radius: 5px;
+    }
+
+    button{
+        width: 326px;
+        height: 58px;
+        border: 0px;
+        border-radius: 5px;
+    }
 
     p{
-        color: yellow;
     }
 `;

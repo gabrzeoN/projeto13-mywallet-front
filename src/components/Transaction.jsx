@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-export default function Transaction({date, value, description, type, id}){
+export default function Transaction({date, value, description, type, id, setUserBalance, userBalance}){
+    // setUserBalance(userBalance + value)
     return(
         <TransactionContent type={type} id={id} >
             <div>

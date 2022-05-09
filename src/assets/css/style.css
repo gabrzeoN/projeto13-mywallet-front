@@ -1,11 +1,14 @@
 *{
     box-sizing: border-box;
+    --main-background: #9056BF;
+    --main-button: #A762D7;
+    --main-font: white;
+    --transaction-background: white;
 }
 
 body{
     background-color: #F2F2F2;
-    /* font-family: 'Raleway', sans-serif;
-    font-family: 'Saira Stencil One', cursive; */
+    font-family: 'Raleway', sans-serif;
 }
 
 a{
